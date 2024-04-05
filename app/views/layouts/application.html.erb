@@ -6,10 +6,9 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
-
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
 	<script src='https://terminal.jup.ag/main-v2.js'></script>
+    <script src="https://cdn.jsdelivr.net/npm/@cowprotocol/widget-lib@latest/index.iife.js"></script>
 	<script defer data-domain="defi.io" src="https://plausible.io/js/script.js"></script>
     <style>
         body {
@@ -33,9 +32,8 @@
   </head>
 
   <body>
-	<div class='w-full h-screen mx-auto bg-gradient-to-l from-indigo-200 pt-3 pl-1'>
-		
-		<%= render partial: 'shared/header' %>
+	<div class='w-full h-screen mx-auto bg-gradient-to-l from-indigo-200'>
+		<%= render partial: 'shared/navbar' %>
 		<section class='flex'>
 	    	<main class="mx-auto mt-4 px-5 pt-10 flex">
 	    		<%= yield %>
