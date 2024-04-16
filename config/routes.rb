@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'bridge/index'
   get 'dex/jup'
   get 'dex/cow'
   
