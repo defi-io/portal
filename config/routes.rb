@@ -1,10 +1,8 @@
 Rails.application.routes.draw do
-  get 'bridge/index'
-  get 'dex/jup'
-  get 'dex/cow'
-  get 'dex/uni'
-  
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  get 'u', to: 'dex#uni'
+  get 'j', to: 'dex#jup'
+  get 'c', to: 'dex#cow'  
+  get 'b', to: 'bridge#index'
 
   # Defines the root path route ("/")
   root "home#index", as: 'home'
