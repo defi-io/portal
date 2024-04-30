@@ -6,4 +6,10 @@ class DexController < ApplicationController
   def cow
   end
   
+  def uni
+  end
+  
+  def pay
+  end
+  
 end
