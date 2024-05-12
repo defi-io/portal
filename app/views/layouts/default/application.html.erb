@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+    <%= csrf_meta_tags %>
+	<style>
+		/* Define font sizes for headings */
+		h1, .h1 {
+		  font-size: 2.1rem;
+		  font-weight: bold;
+          line-height: 1.2; /* Adjusting line spacing for long lines */
+		}
+
+		h2, .h2 {
+		  font-size: 2rem;
+		  font-weight: semibold;
+          line-height: 1; /* Adjusting line spacing for long lines */
+		  
+		}
+
+		h3, .h3 {
+		  font-size: 1.75rem;
+		  font-weight: medium;
+		}
+
+		h4, .h4 {
+		  font-size: 1.5rem;
+		  font-weight: normal;
+		}
+
+		h5, .h5 {
+		  font-size: 1.25rem;
+		  font-weight: normal;
+		}
+
+		h6, .h6 {
+		  font-size: 1rem;
+		  font-weight: normal;
+		}
+	</style>
+  </head>
+  <body>
+	<div class="mx-auto bg-gradient-to-l from-indigo-200 px-36">
+    <%= render 'default/shared/navigation' %>
+    	<div class="px-4">
+    	<%= yield %>
+		</div>
+		<%= render partial: 'shared/footer' %>
+	</div>
+  </body>
+</html>

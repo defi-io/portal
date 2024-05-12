@@ -1,0 +1,13 @@
+<ul class='list-disc'>
+<% Spina::Page.order(created_at: :desc).each do |page| %>
+	<% next if page.title == 'Homepage'%>
+		<li>
+			<div>
+			<h2><%=link_to page.title, "/feed/#{page.slug}" %></h2>
+            <p class="text-gray-500 mb-4"><%= page.created_at %></p>
+			<br>
+			</div>
+		</li>
+<% end %>
+</ul>
+			
