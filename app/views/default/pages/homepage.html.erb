@@ -1,4 +1,4 @@
-<ul class='list-disc'>
+<ul>
 <% Spina::Page.order(created_at: :desc).each do |page| %>
 	<% next if page.title == 'Homepage'%>
 		<li>
