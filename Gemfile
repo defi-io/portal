@@ -47,6 +47,8 @@ gem "bootsnap", require: false
 
 gem 'spina', '2.18.0'
 
+gem 'shortener', '~> 1.0', '>= 1.0.1'
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 
