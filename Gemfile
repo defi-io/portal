@@ -49,6 +49,9 @@ gem 'spina', '2.18.0'
 
 gem 'shortener', '~> 1.0', '>= 1.0.1'
 
+gem 'nokogiri', '1.16.4'
+gem 'open-uri', '0.4.1'
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 

@@ -1,7 +1,12 @@
 <h1><%= current_page.title %></h1>
 <div class="opacity-50">
-      <%= current_page.created_at %>
+      <%= current_page.published_at %>
 </div>
 <div>
 	<%= content.html(:text) %>
 </div>
+<% if current_page.original_url %>
+<div>
+	<span class="opacity-50">Source: <%=link_to get_domain(current_page.original_url), current_page.original_url, rel: 'nofollow', target: '_blank' %></span>
+</div>
+<% end %>

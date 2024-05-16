@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_05_14_203848) do
+ActiveRecord::Schema[7.0].define(version: 2024_05_16_051323) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -212,6 +212,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_14_203848) do
     t.jsonb "json_attributes"
     t.integer "ancestry_depth", default: 0
     t.integer "ancestry_children_count"
+    t.string "original_url"
+    t.datetime "published_at", precision: nil
     t.index ["resource_id"], name: "index_spina_pages_on_resource_id"
   end
 
