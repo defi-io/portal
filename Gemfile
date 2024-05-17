@@ -54,6 +54,8 @@ gem 'open-uri', '0.4.1'
 
 gem 'deepl-rb', '2.5.3', require: 'deepl'
 
+gem 'sitemap_generator'
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 
