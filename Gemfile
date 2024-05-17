@@ -52,6 +52,8 @@ gem 'shortener', '~> 1.0', '>= 1.0.1'
 gem 'nokogiri', '1.16.4'
 gem 'open-uri', '0.4.1'
 
+gem 'deepl-rb', '2.5.3', require: 'deepl'
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 

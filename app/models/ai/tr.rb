@@ -1,10 +1,12 @@
 class Ai::Tr
+  extend Tool::Deepl
   
   def self.theblock_list
     last_url = 'https://www.theblock.co/latest'
     theblock_get_list(last_url)
     
     (1..5).each do |i|
+    # (10..10).each do |i|
       url = "https://www.theblock.co/latest?start=#{10 * i}"
       theblock_get_list(url)
     end
@@ -37,7 +39,25 @@ class Ai::Tr
   def self.theblock_list_to_detail
     Spina::Page.where.not(original_url: nil).where(published_at: nil).each do |page|
       p "="*99, page.id, page.title
+      
       get_page_detail(page)
+    end
+  end
+  
+  def self.theblock_en_to_zh
+    Spina::Page.where.not(original_url: nil).where.not(published_at: nil).each do |page|
+      p "="*99, page.id, page.title
+      
+      next unless page.try('zh-CN_content').empty?
+      p page.en_content.first.content
+      
+      texts = [page.title, page.en_content.first.content]
+      title, content = translate(texts)
+
+      materialized_path = page.materialized_path.gsub('theblock', 'zh-CN')
+      save_page_detail(page, title, content, 'zh-CN', materialized_path)
+      sleep(rand(5..15))
+      
     end
   end
   
@@ -81,84 +101,27 @@ class Ai::Tr
   end
   
   def self.get_doc(url)
-    sleep(30)
+    p seconds = rand(10..40)
+    sleep(seconds)
     Nokogiri::HTML(URI.open(url))
   end
   
-  def self.save_page_detail(page, title, content = nil, lang = 'en')
+  def self.save_page_detail(page, title, content = nil, lang = 'en', materialized_path = nil)
+    lang_content_label = "#{lang}_content"
     page.view_template = 'show'
     
-    page.assign_attributes(
-        "#{lang}_content":[{ type: "Spina::Parts::Text", name: "text", content: content }],
-    )   
-    
-    t = {locale: lang, title: title}
-    page.translations.build(t)
+    if page.try(lang_content_label).first.nil?
+      page.assign_attributes(
+        "#{lang_content_label}": [{ type: "Spina::Parts::Text", name: "text", content: content }],
+      )   
+  
+      t = {locale: lang, title: title, materialized_path: materialized_path}
+      page.translations.build(t)
+    else
+      page.try(lang_content_label).first.content = content
+    end
     
     page.save!
   end
-  
-    def self.active_page
-        locales = Spina.config.locales
-        Spina::Page.live.order(:id).each do |page|
-            next if page.id == 1
-            p "#" * 66, page.id
-            next if page.translations.count >= locales.size
-            locales.each do |lang|
-                p "=" * 55 + "translating #{lang}..."
-                next if page.translations.find_by_locale(lang)
-                t(page, lang)
-                sleep(30)
-            end
-        end
-    end
-
-    def self.t(page, lang)
-        title, content = title_and_content(page, lang)
-        
-        page.assign_attributes(
-            "#{lang}_content":[{ type: "Spina::Parts::Text", name: "text", content: content }],
-        )   
-        
-        materialized_path = "/#{lang}#{page.materialized_path}"
-        t = {locale: lang, title: title, materialized_path: materialized_path}
-        page.translations.new(t)
-        
-        page.save
-    end 
-        
-    private
-    def self.title_and_content(page, lang)
-        title = page.translations.where(locale: 'en').first.title
-        title_prompt = "Translate the following text into #{lang}: #{title}"
-        translated_title = translate(title_prompt)
-        
-        sleep(15)
-        
-        content = page.en_content.first.content
-        content_prompt = "Translate the following text into #{lang}, Preserve decode html tag: #{content}"
-        translated_content = translate(content_prompt)
-
-        return translated_title, translated_content
-    end 
-
-    def self.translate(prompt)
-        p "-" * 33 + '>', prompt
-        client = OpenAI::Client.new(access_token: 'sk-XXXXXXX')
-
-        response = client.completions(
-          parameters:
-          {
-            prompt: prompt,
-            model: "text-davinci-003",
-            temperature: 0.9,
-            # n: 8192,
-            max_tokens: 2048
-          }
-        )
-        p "-" * 22 + '>'
-        content = response['choices'][0]['text'].gsub("\n", '')
-        p content
-        content
-    end
+    
 end
