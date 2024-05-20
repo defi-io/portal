@@ -4,8 +4,6 @@ class News::Ct
   
   def list
     get_list(home_url('CT'))
-    
-    # get_detail
   end
   
   def get_list(url)
@@ -16,9 +14,15 @@ class News::Ct
     doc.css('article.post-card__article').each do |article|
       title = article.css('span.post-card__title').first.text
       link = article.css('header a').first['href']
-      url = home_url('ct') + link
+      
+      next unless link.include?('news')
+      
+      url = home_url('CT') + link
+      
       original_page = Spina::Page.find_by_original_url(url)
       next if original_page
+      
+      p url
       
       page = Spina::Page.new
       page.original_url = url
@@ -27,24 +31,15 @@ class News::Ct
     end
   end
   
-  def list_to_detail
+  def list_to_detail(to_zh = true)
     Spina::Page.where.not(original_url: nil).where(published_at: nil).order(created_at: :desc).limit(10).each do |page|
-      p "="*99, page.id, page.title
+      p "="*99, page.id, page.title, page.original_url
       get_detail(page)
+      en_to_zh(page) if to_zh
     end
   end
   
-  def get_detail(page)  
-    # url = "https://cointelegraph.com/news/bitcoin-etf-volumes-7-week-high-btc-price-67k"
-    # url = "https://cointelegraph.com/news/bitcoin-traders-eye-price-indicators-for-jump-to-70000"
-    # url = "https://cointelegraph.com/news/pink-drainer-hacker-retirement-85m-theft"
-    # url = "https://cointelegraph.com/news/big-bitcoin-miners-growing-threat-bitcoin"
-    # url = "https://cointelegraph.com/news/onboarding-crypto-adoption-challenges"
-    # url = "https://cointelegraph.com/news/deep-forest-celebrates-grammy-anniversary-with-exclusive-itheum-music-data-nft-collection"
-    # url = "https://cointelegraph.com/news/over-80-binance-token-listings-loss-red"
-    # url = "https://cointelegraph.com/news/navigating-crypto-surges-securing-profit-during-market-rallies"
-    # url = "https://cointelegraph.com/news/bitcoin-golden-cross-last-sparked-170-btc-price-gains"
-    
+  def get_detail(page)      
     doc = get_doc(page.original_url)
     
     title = doc.css('h1.post__title').first.text
@@ -97,7 +92,6 @@ class News::Ct
     img_urls = doc.css('img').map { |img| img['src'] }
 
     img_urls.each do |img_url|
-      puts img_url
       image_url = img_url if img_url.include?("images.cointelegraph.com")
     end
     
@@ -114,6 +108,9 @@ class News::Ct
       published_at = i.minutes.ago
     elsif time.include?('day')
       published_at = i.days.ago
+    else
+      t = Time.strptime(time.strip, '%B %d, %Y')
+      published_at = t + (rand(18.7..23.7) * 60 * 60)
     end
     published_at
   end

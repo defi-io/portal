@@ -1,10 +1,11 @@
+<%= render 'default/shared/news_tab' %>
+
 <ul class="title">
-<% pages.each do |page| %>
+	<% (@pages || pages).each do |page| %>
 		<li>
 			<div>
 			<h2><%=link_to page.title, page.materialized_path %></h2>
             <p class="text-gray-500 mb-4"><%= page.published_at %></p>
-			<br>
 			</div>
 		</li>
 <% end %>

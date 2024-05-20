@@ -5,8 +5,9 @@ class Ai::Tr
     last_url = 'https://www.theblock.co/latest'
     theblock_get_list(last_url)
     
+    return
+    
     (1..5).each do |i|
-    # (10..10).each do |i|
       url = "https://www.theblock.co/latest?start=#{10 * i}"
       theblock_get_list(url)
     end

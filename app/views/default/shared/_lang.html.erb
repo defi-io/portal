@@ -1,0 +1,7 @@
+<% if Spina.config.locales.size > 1 %>
+<div id="languages">
+  <% Spina.config.locales.map do |locale| %>
+  	<%= link_to lang(locale), "/news?locale=#{locale}" %>
+  <% end %>
+</div>
+<% end %>
