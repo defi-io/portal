@@ -10,14 +10,4 @@ class HomeController < ApplicationController
     @shortened_url = Shortener::ShortenedUrl.last
   end
   
-  def ct
-    @pages = pages('Cointelegraph')
-    render 'default/pages/homepage'
-  end
-  
-  def tb
-    @pages = pages('Theblock')
-    render 'default/pages/homepage'
-  end
-  
 end

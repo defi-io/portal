@@ -1,25 +1,20 @@
-class NewsController < Spina::PagesController
+class NewsController < ApplicationController
   layout 'default/application'
   before_action :set_locale
   
-  def homepage
-    @pages = Spina::Page.where(draft: false).where.not(published_at: nil).order(published_at: :desc)
+  def index
+    @pages = pages
     render 'default/pages/homepage'
   end
   
-  def show
-    super
+  def ct
+    @pages = pages('Cointelegraph')
+    render 'default/pages/homepage'
   end
   
-  private
-
-  def set_locale
-    if params[:locale]
-      I18n.locale = params[:locale] || I18n.default_locale
-      cookies[:locale] = params[:locale]
-    else
-      I18n.locale = cookies[:locale]
-    end
+  def tb
+    @pages = pages('Theblock')
+    render 'default/pages/homepage'
   end
 
 end

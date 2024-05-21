@@ -1,7 +1,7 @@
 <%= render 'default/shared/news_tab' %>
 
 <ul class="title">
-	<% (@pages || pages).each do |page| %>
+	<% @pages.each do |page| %>
 		<li>
 			<div>
 			<h2><%=link_to page.title, page.materialized_path %></h2>

@@ -6,8 +6,7 @@ SitemapGenerator::Sitemap.create do
   pages.each do |page|
     translations = page.translations
       translations.each do |p|
-        next if p.locale != "zh-CN"
-        add p.materialized_path, :lastmod => p.published_at
+        add p.materialized_path, :lastmod => page.published_at
       end
   end
 
