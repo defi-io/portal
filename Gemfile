@@ -56,6 +56,8 @@ gem 'deepl-rb', '2.5.3', require: 'deepl'
 
 gem 'sitemap_generator'
 
+gem 'whenever', require: false
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 
