@@ -16,5 +16,10 @@ class NewsController < ApplicationController
     @pages = pages('Theblock')
     render 'default/pages/homepage'
   end
+  
+  def cd
+    @pages = pages('Coindesk')
+    render 'default/pages/homepage'
+  end
 
 end

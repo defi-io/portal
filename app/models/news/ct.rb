@@ -32,7 +32,7 @@ class News::Ct
   end
   
   def list_to_detail(to_zh = true)
-    Spina::Page.where.not(original_url: nil).where(published_at: nil).order(created_at: :desc).limit(10).each do |page|
+    Spina::Page.where.not(original_url: nil).where(published_at: nil).order(created_at: :desc).each do |page|
       p "="*99, page.id, page.title, page.original_url
       get_detail(page)
       en_to_zh(page) if to_zh
@@ -75,14 +75,7 @@ class News::Ct
     reactions = doc.search('div.reactions_3eiuR')
     reactions.remove.each(&:remove) if reactions   
     
-    clean_link(doc)
-    doc
-  end
-  
-  def clean_link(doc)
-    doc.css('a').each do |link|
-      link.replace(link.content)
-    end
+    remove_link(doc)
     doc
   end
   
