@@ -14,6 +14,7 @@ class ApplicationController < ActionController::Base
 
   def set_locale
     user_language = request.env['HTTP_ACCEPT_LANGUAGE'].split(',').first
+    user_language = "en" unless user_language == "zh-CN"
     if params[:locale]
       I18n.locale = params[:locale]
       cookies[:locale] = params[:locale]
