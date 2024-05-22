@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get 'b', to: 'bridge#index'
   get 'url', to: 'home#url'
   get 'news', to: 'news#index'
+  get 'n', to: 'news#index'
   get 'ct', to: 'news#ct'
   get 'tb', to: 'news#tb'
   get 'cd', to: 'news#cd'
