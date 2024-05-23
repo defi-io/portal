@@ -25,7 +25,8 @@ module ApplicationHelper
 
   def t_short_url(page)
     key = page.translations.find_by(locale: I18n.locale).short_url
-    url = 'defi.io/' + key
+    return '' if key.nil?
+    url = "| defi.io/#{key}"
   end
     
 end
