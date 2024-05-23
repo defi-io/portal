@@ -22,5 +22,10 @@ module ApplicationHelper
     lang = '中文' if locale.to_s == 'zh-CN'
     lang
   end
+
+  def t_short_url(page)
+    key = page.translations.find_by(locale: I18n.locale).short_url
+    url = 'defi.io/' + key
+  end
     
 end

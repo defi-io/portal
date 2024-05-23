@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_05_16_051323) do
+ActiveRecord::Schema[7.0].define(version: 2024_05_23_000135) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -189,6 +189,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_16_051323) do
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
     t.string "url_title"
+    t.string "short_url"
     t.index ["locale"], name: "index_spina_page_translations_on_locale"
     t.index ["spina_page_id"], name: "index_spina_page_translations_on_spina_page_id"
   end

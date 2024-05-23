@@ -1,6 +1,7 @@
 <h1><%= current_page.title %></h1>
 <div class="opacity-50">
-      <%= current_page.published_at %>
+      <span class="font-normal"><%= current_page.published_at %></span>
+	  <span class="font-light">| <%= t_short_url(current_page) %></span>
 </div>
 <div>
 	<%= content.html(:text) %>
