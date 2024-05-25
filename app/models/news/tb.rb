@@ -5,7 +5,7 @@ class News::Tb
   def list
     last_url = 'https://www.theblock.co/latest'
     get_list(last_url)
-    return
+
     (1..1).each do |i|
       url = "https://www.theblock.co/latest?start=#{10 * i}"
       get_list(url)

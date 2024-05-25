@@ -4,8 +4,7 @@ class News::Cd
   
   def list
     home_url = home_url(home_url('CD'))
-    # markets tech business policy
-    channels = ['tech']
+    channels = ['markets', 'business', 'policy', 'tech']
     channels.each do |c|
       get_list("#{home_url}/#{c}", c)
     end
@@ -17,7 +16,6 @@ class News::Cd
     ancestry = get_ancestry('Coindesk')
     
     doc.css('a').each do |a|     
-      p "-"*77 
 
       title = a.text
       link = a['href']
@@ -31,6 +29,7 @@ class News::Cd
       original_page = Spina::Page.find_by_original_url(url)
       next if original_page
       
+      p "-"*77 
       p title, link
       
       page = Spina::Page.new
@@ -44,8 +43,7 @@ class News::Cd
     pedding_list('Coindesk').each do |page|
       p "="*99, page.id, page.title, page.original_url
       get_detail(page)
-      # remove code
-      # en_to_zh(page) if to_zh
+      en_to_zh(page) if to_zh
     end
   end
   

@@ -1,5 +1,21 @@
 class News::Page
   
+  def batch
+    p Spina::Page.count
+
+    News::Tb.new.list
+    News::Tb.new.list_to_detail
+
+    News::Ct.new.list
+    News::Ct.new.list_to_detail
+
+    News::Cd.new.list
+    News::Cd.new.list_to_detail
+    
+    News::Page.new.pedding_short
+    p Spina::Page.count
+  end
+  
   def short_url(url)
     Shortener::ShortenedUrl.generate(url).unique_key
   end
