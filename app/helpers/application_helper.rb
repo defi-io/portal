@@ -12,8 +12,8 @@ module ApplicationHelper
   end
   
   def tab_class(flag)
-    tab_css = "px-3 py-2 rounded-md bg-slate-50 cursor-pointer dark:bg-transparent dark:text-slate-300 dark:ring-1 dark:ring-slate-700"
-    tab_css = "px-3 py-2 rounded-md bg-sky-500 text-white cursor-pointer" if flag
+    tab_css = "px-2 py-2 rounded-md bg-slate-50 cursor-pointer dark:bg-transparent dark:text-slate-300 dark:ring-1 dark:ring-slate-700"
+    tab_css = "px-2 py-2 rounded-md bg-sky-500 text-white cursor-pointer" if flag
     tab_css
   end
   

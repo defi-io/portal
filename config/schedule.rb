@@ -19,13 +19,14 @@
 
 # Learn more: http://github.com/javan/whenever
 
+env :PATH, ENV['PATH']
 set :job_template, "zsh -l -c ':job'"
-
 set :output, 'log/cron.log'
 
-every 5.minutes do
-  runner "Ai::Tr.theblock_list"
-  runner "Ai::Tr.theblock_list_to_detail"
-  runner "Ai::Tr.theblock_en_to_zh"
+every 7.minutes do
+  runner "News::Page.new.batch"
 end
 
+every 2.hours do
+  rake "sitemap:refresh:no_ping"
+end
