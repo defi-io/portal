@@ -3,7 +3,7 @@ class News::Cd
   include Tool::Deepl
   
   def list
-    home_url = home_url(home_url('CD'))
+    home_url = home_url('CD')
     channels = ['markets', 'business', 'policy', 'tech']
     channels.each do |c|
       get_list("#{home_url}/#{c}", c)

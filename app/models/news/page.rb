@@ -1,6 +1,7 @@
 class News::Page
   
   def batch
+    p Time.now
     p Spina::Page.count
 
     News::Tb.new.list
@@ -11,9 +12,13 @@ class News::Page
 
     News::Cd.new.list
     News::Cd.new.list_to_detail
+
+    News::Dc.new.list
+    News::Dc.new.list_to_detail
     
     News::Page.new.pedding_short
     p Spina::Page.count
+    p Time.now
   end
   
   def short_url(url)

@@ -83,8 +83,10 @@ module News::Crawle
     url = nil
     if name == 'CT'
       url = 'https://cointelegraph.com'
-    elsif name = 'CD'
+    elsif name == 'CD'
       url = 'https://www.coindesk.com'
+    elsif name == 'DC'
+      url = 'https://decrypt.co'
     end
   end
   
