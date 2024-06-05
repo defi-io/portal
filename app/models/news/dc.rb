@@ -3,21 +3,23 @@ class News::Dc
   include Tool::Deepl
   
   def list
-    p url = home_url('DC') + "/news"
+    url = home_url('DC') + "/news"
     doc = get_doc(url)
     ancestry = get_ancestry('Decrypt')
     doc.css('main a').each do |a|
       p '-'*33
-      is_matched = a['href'].match(/https:\/\/decrypt.co\/\d+\//)
+      p is_matched = a['href'].start_with?(/\/\d+\//)
       if is_matched
         p title = a.content
-        p url = a['href']
+        url = a['href']
+
+        p original_url = home_url('DC') + url
         
-        original_page = Spina::Page.find_by_original_url(url)
+        original_page = Spina::Page.find_by_original_url(original_url)
         next if original_page
     
         page = Spina::Page.new
-        page.original_url = url
+        page.original_url = original_url
         page.ancestry = ancestry
         save_page_detail(page, title)
       end
