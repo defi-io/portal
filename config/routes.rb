@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get 'ct', to: 'news#ct'
   get 'tb', to: 'news#tb'
   get 'cd', to: 'news#cd'
+  get 'dc', to: 'news#dc'
 
   # Defines the root path route ("/")
   root "home#index", as: 'home'

@@ -1,0 +1,2 @@
+<%= turbo_stream.append("news_list", partial: 'news/list', locals: { pages: @pages }) %>
+<%= turbo_stream.replace("more", partial: 'news/page_link', locals: { page: @page }) %>

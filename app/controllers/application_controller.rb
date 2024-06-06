@@ -1,13 +1,26 @@
 class ApplicationController < ActionController::Base
   before_action :set_locale
   
-  def pages(name = nil)
+  def pages(page, name = nil)
     lang = I18n.locale
-    ancestry = Spina::Page.find_by_name(name).id
-
-    query = Spina::Page.where(draft: false).where.not(published_at: nil).order(published_at: :desc).limit 77
-    query = query.where(ancestry: ancestry) if name
+    limit = 15
+    query = Spina::Page.where(draft: false).where.not(published_at: nil).order(published_at: :desc).offset(page * limit).limit limit    
+    if name
+      ancestry = Spina::Page.find_by_name(name).id
+      query = query.where(ancestry: ancestry) 
+    end
     query.all.select { |page| page.try("#{lang}_content").present? }
+  end
+  
+  def pages_count(page, name = nil)
+    limit = 15
+    query = Spina::Page.where(draft: false).where.not(published_at: nil)
+    if name
+      ancestry = Spina::Page.find_by_name(name).id
+      query = query.where(ancestry: ancestry) 
+    end
+    offset = limit * (page.to_i + 1)
+    offset >= query.count
   end
   
   private

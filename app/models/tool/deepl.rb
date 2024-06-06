@@ -22,7 +22,7 @@ module Tool::Deepl
     p en_content.size
 
     return if page.published_at < 2.day.ago 
-    return if en_content.size > 5000
+    return if en_content.size > 7000
     return unless page.try('zh-CN_content').empty?
     
     texts = [page.title, en_content]

@@ -1,11 +1,7 @@
 <%= render 'default/shared/news_tab' %>
 
-<ul class="title pt-4">
-	<% @pages.each do |page| %>
-		<li>
-			<h2 class="list"><%=link_to page.title, page.materialized_path %></h2>
-            <span class="text-gray-500"><%= page.published_at %></span>
-		</li>
-<% end %>
+<ul class="title pt-4" id="news_list">
+	<%= render partial: 'news/list', locals: { pages: @pages } %>
 </ul>
-			
+
+<%= render partial: 'news/page_link', locals: { page: @page } %>
