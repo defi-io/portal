@@ -1,0 +1,8 @@
+<div id="<%= dom_id latest_price %>">
+  <% if action_name != "show" %>
+	<%= latest_price.id %> | 
+	<%= latest_price.symbol %> | 
+	<%= latest_price.price %>
+    <hr class="mt-6">
+  <% end %>
+</div>

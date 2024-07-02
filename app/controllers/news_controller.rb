@@ -48,7 +48,11 @@ class NewsController < ApplicationController
   end
   
   def current_page
-    @page = params[:page].to_i + 1 
+    @page = params[:page].to_i + 1
+  end
+  
+  def next_page
+    @page = params[:page].to_i + 1
   end
   
   def last_page(name = nil)

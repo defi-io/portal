@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= yield(:title) + ' | DeFi.io' %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+	<script src='https://terminal.jup.ag/main-v2.js'></script>
+    <script src="https://cdn.jsdelivr.net/npm/@cowprotocol/widget-lib@latest/index.iife.js"></script>
+	<script defer src="https://analytics.us.umami.is/script.js" data-website-id="69f6995d-3403-44dc-b9b4-4440d8e67c6a"></script>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family：A rial, sans-serif;
+            background-color: white;
+         }
+         h1  {
+            padding: 20px;
+            font-size: 24px;
+            color: white;
+         }
+         #integrated-terminal  {
+            padding: 10px;
+            border-radius: 20px;
+            background-color: #304256;
+		}
+	</style>
+  </head>
+
+  <body>
+	<% if controller_name == 'home' %>
+		<div class='w-full h-screen mx-auto bg-gradient-to-l from-indigo-200'>
+	<% else %>
+		<div class='w-full h-full mx-auto bg-gradient-to-l from-indigo-200'>
+	<% end %>
+		<%= render partial: 'shared/navbar' %>
+		<section class='flex'>
+	    	<main class="mx-auto mt-4 px-5 flex">
+	    		<%= yield %>
+	   	 	</main>
+		</section>
+		<%= render partial: 'shared/footer' %>
+	</div>
+  </body>
+</html>

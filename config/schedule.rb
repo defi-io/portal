@@ -23,10 +23,10 @@ env :PATH, ENV['PATH']
 set :job_template, "zsh -l -c ':job'"
 set :output, 'log/cron.log'
 
-every 7.minutes do
+every 14.minutes do
   runner "News::Page.new.batch"
 end
 
-every 2.hours do
+every 12.hours do
   rake "sitemap:refresh:no_ping"
 end

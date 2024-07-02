@@ -7,7 +7,7 @@ module Tool::Deepl
     return title, content
   end
   
-  def en_to_zh_list(name)
+  def en_to_zh_list(name = nil)
     ancestry = get_ancestry(name)
     query = Spina::Page.where.not(original_url: nil).where.not(published_at: nil).order(published_at: :desc)
     query = query.where(ancestry: ancestry) if name
@@ -19,8 +19,8 @@ module Tool::Deepl
   def en_to_zh(page)
     p "="*99, page.id, page.title
     en_content = page.en_content.first.content
-    p en_content.size
 
+    return if en_content.nil?
     return if page.published_at < 2.day.ago 
     return if en_content.size > 7000
     return unless page.try('zh-CN_content').empty?

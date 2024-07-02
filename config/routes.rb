@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :coins
+  resources :latest_prices
   get 'u', to: 'dex#uni'
   get 'j', to: 'dex#jup'
   get 'c', to: 'dex#cow'  
@@ -10,6 +12,8 @@ Rails.application.routes.draw do
   get 'tb', to: 'news#tb'
   get 'cd', to: 'news#cd'
   get 'dc', to: 'news#dc'
+  get ':coin-to-usd', to: 'coins#to_usd'
+  get ':from-to-:to', to: 'coins#to'
 
   # Defines the root path route ("/")
   root "home#index", as: 'home'

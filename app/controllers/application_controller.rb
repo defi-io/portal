@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   def pages(page, name = nil)
     lang = I18n.locale
     limit = 15
-    query = Spina::Page.where(draft: false).where.not(published_at: nil).order(published_at: :desc).offset(page * limit).limit limit    
+    query = Spina::Page.where(draft: false).where.not(published_at: nil).order(published_at: :desc).offset((page - 1) * limit).limit limit    
     if name
       ancestry = Spina::Page.find_by_name(name).id
       query = query.where(ancestry: ancestry) 

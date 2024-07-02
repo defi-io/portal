@@ -5,6 +5,9 @@ class News::Tb
   def list
     last_url = 'https://www.theblock.co/latest'
     get_list(last_url)
+    
+    # remove code
+    return
 
     (1..1).each do |i|
       url = "https://www.theblock.co/latest?start=#{10 * i}"
@@ -35,12 +38,22 @@ class News::Tb
     pedding_list('Theblock').each do |page|
       p "="*99, page.id, page.title, page.original_url
       get_detail(page)
+      # remove code
+      # break
       en_to_zh(page) if to_zh
     end
   end
   
-  def get_detail(page)    
-    doc = get_doc(page.original_url)
+  def get_detail(page = nil)    
+    # remove code
+    url = page.original_url
+    # url = '/Users/guotong/Downloads/tb.html'
+    doc = get_doc(url)
+    
+    return if doc.at('div.articleContent > article > div.faded-excerpt')
+    
+    article_content = doc.search('div#articleContent').first
+    return if article_content.nil?
     
     doc = clean_doc(doc)
     
@@ -48,7 +61,7 @@ class News::Tb
     published_at = doc.css('div.timestamp').first.text.split("•").last
     image = doc.css('div.articleFeatureImage img').first.to_html
     quick_take = doc.search('div.quickTake').first.to_html
-    article = doc.search('div#articleContent').first.to_html
+    article = article_content.to_html
     
     content = (image + quick_take + article).gsub(' data-v-f87c67ca', '')
     page.published_at = Time.parse(published_at)

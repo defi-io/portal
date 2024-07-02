@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_05_23_000135) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_02_161758) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -40,6 +40,39 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_23_000135) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "coins", force: :cascade do |t|
+    t.string "identity"
+    t.string "symbol"
+    t.string "name"
+    t.string "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "coin_name"
+    t.string "full_name"
+    t.string "algorithm"
+    t.string "proof_type"
+    t.integer "sort_order"
+    t.decimal "total_coins_mined", precision: 30, scale: 2
+    t.decimal "circulating_supply", precision: 30, scale: 2
+    t.decimal "max_supply", precision: 30, scale: 2
+    t.date "launch_date"
+    t.string "website"
+    t.string "whitepaper"
+    t.boolean "is_trading", default: false
+    t.text "description"
+    t.string "industry"
+  end
+
+  create_table "latest_prices", force: :cascade do |t|
+    t.string "symbol"
+    t.integer "coin_id"
+    t.decimal "price", precision: 20, scale: 12, default: "0.0"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "updated", default: false
+    t.index ["coin_id"], name: "index_latest_prices_on_coin_id", unique: true
   end
 
   create_table "shortened_urls", id: :serial, force: :cascade do |t|

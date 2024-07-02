@@ -41,3 +41,10 @@
 
 /app/assets/builds/*
 !/app/assets/builds/.keep
+
+# Ignore auto-generated Spina Tailwind CSS configuration
+/app/assets/config/spina/tailwind.config.js
+
+.DS_Store
+
+public/sitemap.xml*
