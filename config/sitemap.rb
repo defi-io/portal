@@ -9,5 +9,10 @@ SitemapGenerator::Sitemap.create do
         add p.materialized_path, :lastmod => page.published_at
       end
   end
+  
+  LatestPrice.find_each do |lp|
+    next if lp.symbol == 'TON'
+    add "#{lp.symbol.downcase}-to-usd", :lastmod => lp.updated_at
+  end
 
 end
