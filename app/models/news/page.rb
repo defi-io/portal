@@ -4,17 +4,14 @@ class News::Page
     p Time.now
     p Spina::Page.count
 
-    News::Tb.new.list
-    News::Tb.new.list_to_detail
-
     News::Ct.new.list
     News::Ct.new.list_to_detail
 
     News::Cd.new.list
     News::Cd.new.list_to_detail
 
-    News::Dc.new.list
-    News::Dc.new.list_to_detail
+    # News::Dc.new.list
+    # News::Dc.new.list_to_detail
     
     News::Page.new.pedding_short
     p Spina::Page.count
