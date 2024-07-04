@@ -54,8 +54,8 @@ gem 'deepl-rb', '2.5.3', require: 'deepl'
 gem 'sitemap_generator'
 
 gem 'whenever', require: false
-gem 'cryptocompare'
-gem 'money'
+gem 'cryptocompare', '0.17.0'
+gem 'money', '6.19.0'
 
 
 # Use Sass to process CSS
@@ -72,6 +72,7 @@ end
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
+  gem "mina"
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"

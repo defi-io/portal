@@ -1,7 +1,7 @@
 <div id="<%= dom_id latest_price %>">
   <% if action_name != "show" %>
 	<%= latest_price.id %> | 
-	<%= latest_price.symbol %> | 
+	<%= link_to latest_price.symbol, "/#{latest_price.symbol.downcase}-to-usd" %> | 
 	<%= latest_price.price %>
     <hr class="mt-6">
   <% end %>

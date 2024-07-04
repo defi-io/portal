@@ -30,3 +30,13 @@ end
 every 12.hours do
   rake "sitemap:refresh:no_ping"
 end
+
+every 2.minutes do
+  runner "LatestPrice.new.update_top"
+end
+
+every 5.minutes do
+  runner "LatestPrice.new.low_price"
+end
+
+

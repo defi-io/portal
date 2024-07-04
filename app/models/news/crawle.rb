@@ -1,8 +1,8 @@
 module News::Crawle
   
-  def get_doc(url)
+  def get_doc(url, i=40)
     p url
-    seconds = rand(10..40)
+    seconds = rand(7..i)
     sleep(seconds)
     Nokogiri::HTML(URI.open(url))
   end

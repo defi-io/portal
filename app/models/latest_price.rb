@@ -19,9 +19,11 @@ class LatestPrice < ApplicationRecord
     end
   end
   
-  def latest
+  # Cryptocompare API
+  def low_price
     symbols = []
-    LatestPrice.where(updated: false).first(66).each do |l|
+    LatestPrice.where("price < 0.01").first(66).each do |l|
+      p '-' * 55, l.id, l.symbol, l.price
       symbols << l.symbol
     end
     p symbols
