@@ -1,0 +1,8 @@
+<% @currencies.each do |c| %>
+	<% Money.add_rate("USD", c.upcase, @currency.try(c)) %>
+	<div class='text-3xl text-slate-500 pb-5'>
+		<h2><%= link_to Money.us_dollar(@latest_price.cents).exchange_to(c.upcase).to_d, "/#{@latest_price.symbol.downcase}-to-#{c}", alt: "#{@latest_price.symbol} to #{c.upcase}" %>
+		<span class='text-slate-400 text-xl'> <%= c.upcase %>/<%= @latest_price.symbol %></span>
+		</h2>
+	</div>
+<% end %>

@@ -4,6 +4,10 @@ class LatestPrice < ApplicationRecord
   
   belongs_to :coin
   
+  def cents
+    self.price * 100
+  end
+  
   def convert(to)
     self.usd / to.usd
   end

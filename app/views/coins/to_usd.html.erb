@@ -1,24 +1,10 @@
 <% content_for :title, @title %>
 <div class='text-center'>
 	
-	<h1 class='text-5xl font-medium text-slate-600'><%= @latest_price.symbol %> to USD</h1>
-	<div class='text-5xl text-slate-700 pb-10'>
-		<h2><span class='text-slate-300'>$</span><%= @latest_price.price %></h2>
-	</div>
+	<%= render partial: 'usd' %>
+
+	<%= render partial: 'currencies' %>	
 	
-	<% @currencies.each do |c| %>
-		<% Money.add_rate("USD", c.upcase, @currency.try(c)) %>
-		<div class='text-3xl text-slate-500 pb-5'>
-			<h2><%= Money.us_dollar(@price_cents).exchange_to(c.upcase).to_d %><span class='text-slate-400 text-xl'> <%= c.upcase %>/<%= @latest_price.symbol %></span></h2>
-		</div>
-	<% end %>
+	<%= render partial: 'about' %>	
 	
-	<div class='pt-10 text-slate-600 md:max-w-3xl text-left space-y-2'>
-		<p>
-		<h3 class='text-3xl'>About <%= @coin.full_name %></h3>
-		</p>
-		<p><%= @coin.description %></p>
-		<p><span class='font-medium'>Website:</span> <%= link_to @coin.website, @coin.website, target: "_blank", class: 'text-slate-400' %></p>
-		<p class='font-medium'><%= link_to 'Download Whitepaper', asset_path(@coin.whitepaper), target: "_blank" %></p>
-	</div>
 </div>
