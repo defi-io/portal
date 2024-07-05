@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get 'dc', to: 'news#dc'
   get ':coin-to-usd', to: 'coins#to_usd'
   get ':from-to-:to', to: 'coins#to'
+  get ':coin', to: 'coins#to_usd', constraints: { coin: /[a-zA-Z0-9]+/ }
 
   # Defines the root path route ("/")
   root "home#index", as: 'home'

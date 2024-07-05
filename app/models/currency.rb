@@ -3,7 +3,7 @@ class Currency < ApplicationRecord
   def find_currencies
     currency = Currency.first
     currencies = [:eur, :gbp, :aud, :cad, :jpy, :sgd, :hkd, :cny]
-    p rates = Cryptocompare::Price.find('USD', currency)
+    p rates = Cryptocompare::Price.find('USD', currencies)
     rates['USD'].each do |key, value|
       p key, value
       currency[key.downcase] = value

@@ -39,8 +39,7 @@ class News::Tb
       p "="*99, page.id, page.title, page.original_url
       get_detail(page)
       # remove code
-      # break
-      en_to_zh(page) if to_zh
+      # en_to_zh(page) if to_zh
     end
   end
   

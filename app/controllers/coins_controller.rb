@@ -2,13 +2,18 @@ class CoinsController < ApplicationController
   before_action :set_coin, only: %i[ show ]
 
   def to_usd
-    @latest_price = LatestPrice.find_by_symbol(params[:coin].upcase)
-    @price_cents = @latest_price.price * 100
-    @currency = Currency.first
-    @currencies = [:eur, :gbp, :aud, :cad, :jpy, :sgd, :hkd, :cny]
-    Money.default_infinite_precision = true
-    @coin = @latest_price.coin
-    @title = "#{@latest_price.symbol} to USD, #{@latest_price.symbol} Price USD, #{@latest_price.symbol} USD"
+    p @latest_price = LatestPrice.find_by_symbol(params[:coin].upcase)
+    if @latest_price.nil?
+      shortened_url = Shortener::ShortenedUrl.find_by_unique_key(params[:coin])
+      redirect_to shortened_url.url, allow_other_host: true 
+    else 
+      @price_cents = @latest_price.price * 100
+      @currency = Currency.first
+      @currencies = [:cny, :eur, :gbp, :aud, :cad, :jpy, :sgd, :hkd]
+      Money.default_infinite_precision = true
+      @coin = @latest_price.coin
+      @title = "#{@latest_price.symbol} to USD, #{@latest_price.symbol} Price USD, #{@latest_price.symbol} USD"
+    end
   end
   
   def to
