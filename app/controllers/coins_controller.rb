@@ -3,6 +3,10 @@ class CoinsController < ApplicationController
 
   def to_usd
     @latest_price = LatestPrice.find_by_symbol(params[:coin].upcase)
+    @price_cents = @latest_price.price * 100
+    @currency = Currency.first
+    @currencies = [:eur, :gbp, :aud, :cad, :jpy, :sgd, :hkd, :cny]
+    Money.default_infinite_precision = true
     @coin = @latest_price.coin
     @title = "#{@latest_price.symbol} to USD, #{@latest_price.symbol} Price USD, #{@latest_price.symbol} USD"
   end

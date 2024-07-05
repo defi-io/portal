@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_02_161758) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_04_225026) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -63,6 +63,20 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_02_161758) do
     t.boolean "is_trading", default: false
     t.text "description"
     t.string "industry"
+  end
+
+  create_table "currencies", force: :cascade do |t|
+    t.decimal "usd", precision: 20, scale: 7, default: "0.0"
+    t.decimal "eur", precision: 20, scale: 7, default: "0.0"
+    t.decimal "gbp", precision: 20, scale: 7, default: "0.0"
+    t.decimal "aud", precision: 20, scale: 7, default: "0.0"
+    t.decimal "cad", precision: 20, scale: 7, default: "0.0"
+    t.decimal "jpy", precision: 20, scale: 7, default: "0.0"
+    t.decimal "sgd", precision: 20, scale: 7, default: "0.0"
+    t.decimal "hkd", precision: 20, scale: 7, default: "0.0"
+    t.decimal "cny", precision: 20, scale: 7, default: "0.0"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "latest_prices", force: :cascade do |t|

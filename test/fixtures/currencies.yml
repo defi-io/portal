@@ -1,0 +1,23 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  usd: 9.99
+  eur: 9.99
+  gbp: 9.99
+  aud: 9.99
+  cad: 9.99
+  jpy: 9.99
+  sgd: 9.99
+  hkd: 9.99
+  cny: 9.99
+
+two:
+  usd: 9.99
+  eur: 9.99
+  gbp: 9.99
+  aud: 9.99
+  cad: 9.99
+  jpy: 9.99
+  sgd: 9.99
+  hkd: 9.99
+  cny: 9.99
