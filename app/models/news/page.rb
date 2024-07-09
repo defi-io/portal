@@ -10,8 +10,8 @@ class News::Page
     News::Cd.new.list
     News::Cd.new.list_to_detail
 
-    # News::Dc.new.list
-    # News::Dc.new.list_to_detail
+    News::Dc.new.list
+    News::Dc.new.list_to_detail
     
     News::Page.new.pedding_short
     p Spina::Page.count
