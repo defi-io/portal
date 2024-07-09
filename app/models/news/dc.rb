@@ -24,11 +24,12 @@ class News::Dc
         save_page_detail(page, title)
       end
     end
+    nil
   end
   
   def list_to_detail(to_zh = true)
     pedding_list('Decrypt').each do |page|
-      p "="*99, page.id, page.title, page.original_url
+      p "="*99, page.id, page.title
       get_detail(page)
       en_to_zh(page) if to_zh
     end
@@ -41,16 +42,16 @@ class News::Dc
     title = doc.at('header > div > h1').content
     h2 = doc.at('header > div > h2').remove_class.to_html
     img_url = get_img(doc)
-    img = "<img src='#{img_url}' alt='#{title}' />"
-    article = (img + h2)
+    page.image_url = img_url
+    
+    article = h2
     doc = doc.css('div.grid-cols-1 > p.font-meta-serif-pro').each_with_index do |paragraph, i|
-      p '-'*33
       paragraph = paragraph.remove_class
       paragraph = remove_link(paragraph)
       # paragraph = remove_span(paragraph)
       paragraph = remove_empty(paragraph)
       p paragraph.to_html
-      article += paragraph.to_html
+      article += paragraph.to_html.chomp
     end
     save_page_detail(page, title, article, 'en')
   end

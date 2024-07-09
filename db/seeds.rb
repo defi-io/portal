@@ -30,13 +30,23 @@ if cd.nil?
   cd.save!
 end
 
+tb = Spina::Page.find_by_name('Decrypt')
+if tb.nil?
+  tb = Spina::Page.new
+  tb.title = "Decrypt"
+  tb.name = "Decrypt"
+  tb.view_template = "show"
+  tb.position = 4
+  tb.save!
+end
+
 tb = Spina::Page.find_by_name('Theblock')
 if tb.nil?
   tb = Spina::Page.new
   tb.title = "Theblock"
   tb.name = "Theblock"
   tb.view_template = "show"
-  tb.position = 4
+  tb.position = 10
   tb.save!
 end
 

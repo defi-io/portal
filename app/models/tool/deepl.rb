@@ -14,6 +14,7 @@ module Tool::Deepl
     query.all.each do |page|
       en_to_zh(page)
     end
+    nil
   end
   
   def en_to_zh(page)

@@ -4,6 +4,9 @@
 	  <span class="font-light"><%= t_short_url(current_page) %></span>
 </div>
 <div>
+	<% if current_page.image_url %>
+		<%= image_tag current_page.image_url, alt: current_page.title %>
+	<% end %>
 	<%= content.html(:text) %>
 </div>
 <% if current_page.original_url %>
