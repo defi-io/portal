@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   get ':coin-to-usd', to: 'coins#to_usd'
   get ':coin-to-:currency', to: 'coins#to'
   get ':coin', to: 'coins#to_usd', constraints: { coin: /[a-zA-Z0-9]+/ }
+  post 'convert', to: 'coins#convert'
 
   # Defines the root path route ("/")
   root "home#index", as: 'home'

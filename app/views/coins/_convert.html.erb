@@ -1,0 +1,24 @@
+<div class="flex justify-center">
+    <form action="/convert", method="post", data-turbo-stream>
+		<div class="md:flex md:space-x-1">
+		<div class="text-slate-400 pr-2">
+			<input name="amount" class="rounded-md" placeholder="Please enter an amount" size="21" />
+		</div>
+		<div class="pt-4 md:pt-0 pr-2 text-slate-500">
+			<input name="from" class="rounded-md" value="<%= params[:coin].upcase %>" readonly="readonly" size="21" />
+		</div> 
+		<div class="text-slate-400 pr-2">
+			to
+		</div>
+		<div class="pr-2 text-slate-500">
+			<input name="to" class="rounded-md" value="USD" readonly="readonly" size="21" />
+		</div>
+		<div class="pt-4 md:pt-0">
+			<button class="rounded-full font-semibold text-slate-600">Convert</button>
+		</div>
+		</div>
+	</form>
+</div>
+	
+<div id="convert" class="pb-4">
+</div>

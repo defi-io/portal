@@ -8,6 +8,10 @@ class LatestPrice < ApplicationRecord
     self.price * 100
   end
   
+  def total_amount(amount)
+    self.price * amount
+  end
+  
   def convert(to)
     self.usd / to.usd
   end

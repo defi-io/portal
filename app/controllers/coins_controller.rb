@@ -28,6 +28,15 @@ class CoinsController < ApplicationController
     @title = "#{@latest_price.symbol} to #{@current_currency}, #{@latest_price.symbol} Price #{@current_currency}, #{@latest_price.symbol} #{@current_currency}"
   end
   
+  def convert
+    @latest_price = LatestPrice.find_by_symbol(params[:from].upcase)
+    @total_amount = @latest_price.total_amount(params[:amount].to_d)
+    respond_to do |format|
+      format.html
+      format.turbo_stream
+    end
+  end
+  
   def index
     @coins = Coin.per(20)
   end
