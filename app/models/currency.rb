@@ -1,4 +1,12 @@
 class Currency < ApplicationRecord
+  
+  def get_currencies
+    [:usd, :eur, :gbp, :aud, :cad, :jpy, :sgd, :hkd, :cny]
+  end
+  
+  def search_currency(q = nil)
+    get_currencies.select { |c| c =~ /#{q}/ }
+  end
 
   def find_currencies
     currency = Currency.first

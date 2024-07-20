@@ -5,11 +5,11 @@
 		<%= @latest_price.symbol %> to <%= @current_currency %>
 	</h1>
 	<div class='text-5xl text-slate-700 pb-10'>
-		<h2><%= @price %><span class='text-2xl text-slate-400'><%= @current_currency %></span></h2>
+		<h2><%= round(@price) %><span class='text-2xl text-slate-400'><%= @current_currency %></span></h2>
 	</div>
 	
 	<div class='text-4xl text-slate-600 pb-5'>
-		<h2><%= link_to @latest_price.price, "/#{@latest_price.symbol.downcase}-to-usd", alt: "#{@latest_price.symbol} to USD"  %>
+		<h2><%= link_to round(@latest_price.price), "/#{@latest_price.symbol.downcase}-to-usd", alt: "#{@latest_price.symbol} to USD"  %>
 			<span class='text-slate-400 text-xl'> USD/<%= @latest_price.symbol %></span>
 		</h2>
 	</div>	

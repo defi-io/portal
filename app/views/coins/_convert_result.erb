@@ -1,8 +1,20 @@
-<div id="convert">
-	<div class='text-2xl text-slate-700 py-5'>
-		<span class='text-slate-500'><%= params[:amount]%></span>
-		<span class='text-slate-400'> <%= params[:from] %> = </span>
-		<span class="text-4xl"><%= total_amount %></span>
-		<span class='text-slate-400'> <%= params[:to] %></span>
+<div class='text-2xl text-slate-700 py-5 md:flex items-center justify-center'>
+	<div class="text-center">
+		<span class='text-slate-500'><%= params[:amount] %></span>
+		<span class='text-slate-400'><%= params[:from] %> =</span>
+	</div>
+	
+	<div class="text-center">
+		<div class="pb-4">
+			<span class="text-4xl pl-1"><%= total_amount %></span>
+			<span class='text-slate-400'><%= params[:to] %></span>
+		</div>
+	
+		<% @currencies.each do |currency| %>
+			<div class='text-xl text-slate-500 py-1'>
+				<span><%= @latest_price.other_amount(currency, params[:amount]) %></span>
+				<span class='text-slate-400'> <%= currency.upcase %></span>
+			</div>
+		<% end %>
 	</div>
 </div>

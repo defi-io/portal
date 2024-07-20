@@ -1,6 +1,7 @@
 class LatestPrice < ApplicationRecord
   include Tool::Cmc
   include News::Crawle
+  include Tool::Money
   
   belongs_to :coin
   
@@ -9,11 +10,24 @@ class LatestPrice < ApplicationRecord
   end
   
   def total_amount(amount)
-    self.price * amount
+    to_round(self.price * amount)
   end
   
-  def convert(to)
-    self.usd / to.usd
+  def other_currency_amount(amount, price)
+    to_round(price * amount)
+  end
+  
+  def other_amount(currency, amount = 1)
+    c = Currency.first
+    Money.add_rate("USD", currency.upcase, c.try(currency.downcase))
+    exchange_to = Money.us_dollar(self.cents).exchange_to(currency.upcase).to_d
+    to_round(exchange_to * amount.to_d)
+  end
+  
+  def self.search(q)
+    # return active if q.nil?
+    search_term = "#{q.strip}%"
+    where("symbol ILIKE ?", search_term).order(id: :asc)
   end
   
   def top(page = 1)

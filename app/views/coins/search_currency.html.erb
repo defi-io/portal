@@ -1,0 +1,13 @@
+<% if @currencies.empty? %>
+	<ul><li class="text-red-500">
+		This currency does not exist or is not supported.
+	</li></ul>
+	<input id="to_valid" type="hidden" value="false" />
+<% else %>
+	<ul id="currency_ul" data-action="click->coins#choose_currency" class="bg-white">
+		<% @currencies.each_with_index do |currency, i| %>
+			<li id="<%= "currency_#{i}" %>"><%= currency.upcase %></li>
+		<% end %>
+	</ul>
+	<input id="to_valid" type="hidden" value="true" />
+<% end %>

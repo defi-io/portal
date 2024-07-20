@@ -1,0 +1,13 @@
+<% if @coins.empty? %>
+	<ul><li class="text-red-500">
+	This token does not exist or is not supported.
+	</li></ul>
+	<input id="from_valid" type="hidden" value="false" />
+<% else %>
+	<ul id="coin_ul" data-action="click->coins#choose_coin" class="bg-white">
+		<% @coins.each_with_index do |coin, i| %>
+			<li id="<%= "coin_#{i}" %>"><%= coin.symbol %></li>
+		<% end %>
+	</ul>
+	<input id="from_valid" type="hidden" value="true" />
+<% end %>

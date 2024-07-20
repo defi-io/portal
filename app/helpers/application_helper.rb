@@ -1,4 +1,6 @@
 module ApplicationHelper
+  include Tool::Money
+  
   def title(title = nil)
     return "DeFi Insights: Crypto News, Trends from Cointelegraph" if action_name == 'ct'
     return "DeFi Insights: Crypto News, Trends from Theblock" if action_name == 'tb'
@@ -33,6 +35,10 @@ module ApplicationHelper
   def action_name_to_link
     return 'news' if action_name == 'index'
     action_name
+  end
+  
+  def round(total_amount)
+    to_round(total_amount)
   end
     
 end

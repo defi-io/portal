@@ -1,0 +1,7 @@
+<% if @is_valid %>
+	<%= render partial: 'convert_result', locals: { total_amount: @total_amount } %>
+<% else %>
+	<ul><li class="text-red-500">
+		<%= @tip %>
+	</li></ul>
+<% end %>
