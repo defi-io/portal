@@ -4,11 +4,10 @@
 			
 			<div class="text-slate-400 pr-2">
 				<input id="amount" type="number" name="amount" data-action="input->coins#calcalate" data-target="amount" class="rounded-md border-gray-300" placeholder="Please enter an amount" />
-				<span id="amount_tip" class="text-left float-right"></span>
 			</div>
 			<div class="pt-4 md:pt-0 pr-2 text-slate-500">
 				<input id="from" type="text" name="from" data-action="coins#search_coin focus->coins#auto_clear" class="rounded-md border-gray-300" value="<%= params[:coin].upcase %>" />
-				<span id="coin_list" class="text-left float-right">
+				<span id="coin_list" class="text-left">
 					<ul id="coin_ul"></ul>
 					<input id="from_valid" type="hidden" value="true" />
 				</span>
@@ -18,7 +17,7 @@
 			</div>
 			<div class="pr-2 text-slate-500">
 				<input id="to" type="text" name="to" data-action="coins#search_currency focus->coins#auto_select" class="rounded-md border-gray-300" value="USD" />
-				<span id="currency_list" class="text-left float-right">
+				<span id="currency_list" class="text-left">
 					<ul id="currency_ul"></ul>
 					<input id="to_valid" type="hidden" value="true" />
 				</span>
