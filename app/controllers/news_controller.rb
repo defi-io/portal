@@ -47,6 +47,15 @@ class NewsController < ApplicationController
     end
   end
   
+  def dl
+    last_page('Dlnews')
+    @pages = pages(@page, 'Dlnews')
+    respond_to do |format|
+      format.html { render 'default/pages/homepage' }
+      format.turbo_stream { render 'news/index' }
+    end
+  end
+
   def current_page
     @page = params[:page].to_i + 1
   end

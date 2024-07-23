@@ -40,6 +40,16 @@ if tb.nil?
   tb.save!
 end
 
+dl = Spina::Page.find_by_name('Dlnews')
+if dl.nil?
+  dl = Spina::Page.new
+  dl.title = "Dlnews"
+  dl.name = "Dlnews"
+  dl.view_template = "show"
+  dl.position = 5
+  dl.save!
+end
+
 tb = Spina::Page.find_by_name('Theblock')
 if tb.nil?
   tb = Spina::Page.new

@@ -1,14 +1,17 @@
-<ul class="flex space-x-3 tab">
+<ul class="flex space-x-2 tab">
 <li>
 	<div class="<%= tab_class(action_name == 'index') %>"><%= link_to "All", "/news" %></div>
 </li>
 <li>
-	<div class="<%= tab_class(action_name == 'ct') %>"><%= link_to "Cointelegraph", "/ct" %></div>
+	<div class="<%= tab_class(action_name == 'ct') %>"><%= link_to "CT", "/ct" %></div>
 </li>
 <li>
 	<div class="<%= tab_class(action_name == 'cd') %>"><%= link_to "Coindesk", "/cd" %></div>
 </li>
 <li>
 	<div class="<%= tab_class(action_name == 'dc') %>"><%= link_to "Decrypt", "/dc" %></div>
+</li>
+<li>
+	<div class="<%= tab_class(action_name == 'dl') %>"><%= link_to "DLNews", "/dl" %></div>
 </li>
 </ul>

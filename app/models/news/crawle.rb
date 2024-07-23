@@ -4,7 +4,7 @@ module News::Crawle
     p url
     seconds = rand(7..i)
     sleep(seconds)
-    Nokogiri::HTML(URI.open(url))
+    Nokogiri::HTML(URI.open(url), nil, 'UTF-8')
   end
   
   def pedding_list(name = nil)
@@ -52,7 +52,11 @@ module News::Crawle
       published_at = time 
     else
       t = Time.strptime(time.strip, '%B %d, %Y')
-      published_at = t + (rand(18.7..23.7) * 60 * 60)
+      if t.day == Time.now.day
+        published_at = Time.now
+      else
+        published_at = t + (rand(1.7..8.7) * 60 * 60)
+      end
     end
     published_at
   end
@@ -79,6 +83,20 @@ module News::Crawle
     doc
   end
   
+  def remove_svg(doc)
+    doc.css('svg').each do |element|
+      element.remove
+    end
+    doc
+  end
+
+  def remove_tags(doc, tag)
+    doc.css(tag).each do |element|
+      element.remove
+    end
+    doc
+  end
+
   def home_url(name)
     url = nil
     if name == 'CT'
@@ -87,6 +105,8 @@ module News::Crawle
       url = 'https://www.coindesk.com'
     elsif name == 'DC'
       url = 'https://decrypt.co'
+    elsif name == 'DL'
+      url = 'https://www.dlnews.com'
     end
   end
   
