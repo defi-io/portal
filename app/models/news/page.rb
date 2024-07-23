@@ -13,6 +13,9 @@ class News::Page
     News::Dc.new.list
     News::Dc.new.list_to_detail
     
+    News::Dl.new.list
+    News::Dl.new.list_to_detail
+    
     News::Page.new.pedding_short
     p Spina::Page.count
     p Time.now
