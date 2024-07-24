@@ -26,8 +26,8 @@ class News::Dl
   end
   
   def list_to_detail(to_zh = true)
-    Spina::Page.where.not(original_url: nil).where(published_at: nil).order(created_at: :desc).each_with_index do |page, i|
-      p "="*99, i, page.id, page.title, page.original_url
+    pedding_list('Dlnews').each do |page|
+      p "="*99, page.id, page.title
       get_detail(page)
       en_to_zh(page) if to_zh
     end

@@ -9,7 +9,7 @@ module News::Crawle
   
   def pedding_list(name = nil)
     ancestry = get_ancestry(name)
-    query = Spina::Page.where.not(original_url: nil).where(published_at: nil).order(published_at: :desc)
+    query = Spina::Page.where.not(original_url: nil).where(published_at: nil).order(created_at: :desc)
     query = query.where(ancestry: ancestry) if name
     query.all
   end

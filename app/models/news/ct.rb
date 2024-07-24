@@ -32,8 +32,8 @@ class News::Ct
   end
   
   def list_to_detail(to_zh = true)
-    Spina::Page.where.not(original_url: nil).where(published_at: nil).order(created_at: :desc).each do |page|
-      p "="*99, page.id, page.title, page.original_url
+    pedding_list('Cointelegraph').each do |page|
+      p "="*99, page.id, page.title
       get_detail(page)
       en_to_zh(page) if to_zh
     end

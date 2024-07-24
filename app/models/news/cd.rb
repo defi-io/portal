@@ -41,7 +41,7 @@ class News::Cd
   
   def list_to_detail(to_zh = true)
     pedding_list('Coindesk').each do |page|
-      p "="*99, page.id, page.title, page.original_url
+      p "="*99, page.id, page.title
       get_detail(page)
       en_to_zh(page) if to_zh
     end
