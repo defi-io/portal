@@ -31,6 +31,7 @@ class News::Dl
       get_detail(page)
       en_to_zh(page) if to_zh
     end
+    nil
   end
   
   def get_detail(page)
