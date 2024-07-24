@@ -47,7 +47,7 @@ class News::Cd
     end
   end
   
-  def get_detail(page = nil)    
+  def get_detail(page)    
     doc = get_doc(page.original_url)
 
     img = doc.css('picture img').first
@@ -58,14 +58,17 @@ class News::Cd
     end
     
     page.published_at = format_time(doc.css('div.at-created span').first.text)
-    # figcaption = doc.css('figcaption span').first.to_html
+
+    doc = doc.at('section.at-body div.at-content-wrapper')
+    video = doc.at('div.eFFIxC')
+    video.remove if video
     
-    doc = doc.css('div.main-body-grid').first
+    doc = remove_attribute(doc, 'data-submodule-name')
     doc = remove_class(doc)
     doc = remove_empty(doc)
     doc = remove_link(doc)
     body = clean_doc(doc).to_html
-
+    body = body.sub(' class="at-content-wrapper"', '')
     content = img + body
     
     save_page_detail(page, nil, content)

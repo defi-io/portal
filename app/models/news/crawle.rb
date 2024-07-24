@@ -96,6 +96,13 @@ module News::Crawle
     end
     doc
   end
+  
+  def remove_attribute(doc, attribute)
+    doc.css("[#{attribute}]").each do |element|
+      element.remove_attribute(attribute)
+    end
+    doc
+  end
 
   def home_url(name)
     url = nil
