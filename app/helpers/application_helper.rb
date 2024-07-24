@@ -11,6 +11,10 @@ module ApplicationHelper
     current_page.title
   end
   
+  def related(current_page)
+    current_page.siblings.where("id < #{current_page.id}").order(id: :desc).limit 10
+  end
+  
   def get_domain(url)
     URI.parse(url).host
   end

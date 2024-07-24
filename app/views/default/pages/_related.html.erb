@@ -1,0 +1,10 @@
+<% if related(current_page).size > 0 %>
+	<h3 class="text-gray-600">Related News</h3>
+	<ul class="pt-4">
+		<% related(current_page).each do |page| %>
+			<li>
+				<%= link_to page.title, page.materialized_path %>
+			</li>
+		<% end %>
+	</ul>
+<% end %>
