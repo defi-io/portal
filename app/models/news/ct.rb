@@ -40,7 +40,7 @@ class News::Ct
     nil
   end
   
-  def get_detail(page)      
+  def get_detail(page)
     doc = get_doc(page.original_url)
     
     title = doc.css('h1.post__title').first.text
@@ -55,26 +55,47 @@ class News::Ct
     
     content = img_html_tag + doc.first.to_html
     
+    content = content.sub(' class="post__content-wrapper"', '')
+    content = content.sub(' class="post-content relative"', '')
+    content = content.gsub('<!---->', '')
+
     page.published_at = published_at
     
     save_page_detail(page, title, content)
   end
   
   def clean_doc(doc)
+    remove_tags(doc, 'template')
+    remove_attribute(doc, 'data-v-1239ec49')
+    remove_attribute(doc, 'data-ct-non-breakable')
+
+    hidden_img = doc.css('img.visually-hidden')
+    hidden_img.each(&:remove) if hidden_img
+
+    separator_line = doc.css('div.post__separator-line')
+    separator_line.each(&:remove) if separator_line
+
+    tags_list = doc.css('div.tags-list')
+    tags_list.each(&:remove) if tags_list
+
+    adslot = doc.css('div.adslot-after-article')
+    adslot.each(&:remove) if adslot
+
+    # History style
     shares_list = doc.search('div.shares-list__list')
-    shares_list.remove.each(&:remove) if shares_list
+    shares_list.each(&:remove) if shares_list
     
     related = doc.search('p strong em')
-    related.remove.each(&:remove) if related   
+    related.each(&:remove) if related
     
     disclaimer = doc.search('p.post-content__disclaimer')
-    disclaimer.remove.each(&:remove) if disclaimer
+    disclaimer.each(&:remove) if disclaimer
     
     tags_list = doc.search('ul.tags-list__list')
-    tags_list.remove.each(&:remove) if tags_list    
+    tags_list.each(&:remove) if tags_list
     
     reactions = doc.search('div.reactions_3eiuR')
-    reactions.remove.each(&:remove) if reactions   
+    reactions.each(&:remove) if reactions
     
     remove_link(doc)
     doc
