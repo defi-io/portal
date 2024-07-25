@@ -3,15 +3,13 @@
   <head>
     <title><%= title %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= stylesheet_link_tag "tailwind", "inter-font", "application", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
     <%= csrf_meta_tags %>
 	<%= javascript_importmap_tags %>
 	<script defer src="https://analytics.us.umami.is/script.js" data-website-id="69f6995d-3403-44dc-b9b4-4440d8e67c6a"></script>
   </head>
   <body>
-
 	<div class='w-full h-full mx-auto bg-gradient-to-l from-indigo-200'>
-		
     <%= render 'default/shared/navigation' %>
     	<div class="px-4 custom-container">
     	<%= yield %>

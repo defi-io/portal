@@ -2,14 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/*
-
-news.css
-
-*/
-
-/* Define font sizes for headings */
-
 h1, .h1 {
   font-size: 1.31rem;
   font-weight: bold;
