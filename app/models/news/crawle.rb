@@ -14,6 +14,10 @@ module News::Crawle
     query.all
   end
   
+  def pedding_children(name)
+    Spina::Page.find_by_name(name).children.where.not(original_url: nil).where(published_at: nil).order(created_at: :desc)
+  end
+  
   def save_page_detail(page, title, content = nil, lang = 'en', materialized_path = nil)
     lang_content_label = "#{lang}_content"
     page.view_template = 'show'
@@ -39,7 +43,11 @@ module News::Crawle
   def get_ancestry_name(id)
     Spina::Page.find(id).name
   end
-  
+
+  def get_child_ancestry(ancestry_name)
+    Spina::Page.find_by_name(ancestry_name).child_ancestry
+  end
+
   def format_time(time)
     published_at = nil
     if time.include?('hour')
@@ -114,6 +122,8 @@ module News::Crawle
       url = 'https://decrypt.co'
     elsif name == 'DL'
       url = 'https://www.dlnews.com'
+    elsif name == 'MC'
+      url = 'https://multicoin.capital'
     end
   end
   

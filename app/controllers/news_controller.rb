@@ -56,6 +56,14 @@ class NewsController < ApplicationController
     end
   end
 
+  def insight
+    @pages = Spina::Page.find_by_name('Insight').descendants.where.not(published_at: nil).order(published_at: :desc)
+    respond_to do |format|
+      format.html { render 'default/pages/homepage' }
+      format.turbo_stream { render 'news/index' }
+    end
+  end
+
   def current_page
     @page = params[:page].to_i + 1
   end

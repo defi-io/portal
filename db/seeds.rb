@@ -50,6 +50,28 @@ if dl.nil?
   dl.save!
 end
 
+is = Spina::Page.find_by_name('Insight')
+if is.nil?
+  is = Spina::Page.new
+  is.title = "Insight"
+  is.name = "Insight"
+  is.view_template = "show"
+  is.position = 1
+  is.save!
+end
+
+ancestry = News::Ct.new.get_ancestry('Insight')
+mc = Spina::Page.find_by_name('Multicoin')
+if mc.nil?
+  mc = Spina::Page.new
+  mc.title = "Multicoin"
+  mc.name = "Multicoin"
+  mc.view_template = "show"
+  mc.position = 2
+  mc.ancestry = ancestry
+  mc.save!
+end
+
 tb = Spina::Page.find_by_name('Theblock')
 if tb.nil?
   tb = Spina::Page.new

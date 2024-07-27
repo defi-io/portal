@@ -17,13 +17,13 @@ module Tool::Deepl
     nil
   end
   
-  def en_to_zh(page)
+  def en_to_zh(page, size = 7000)
     p "="*99, page.id, page.title
     en_content = page.en_content.first.content
 
     return if en_content.nil?
     return if page.published_at < 2.day.ago 
-    return if en_content.size > 7000
+    return if en_content.size > size
     return unless page.try('zh-CN_content').empty?
     
     texts = [page.title, en_content]
