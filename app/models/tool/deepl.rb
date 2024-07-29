@@ -17,7 +17,7 @@ module Tool::Deepl
     nil
   end
   
-  def en_to_zh(page, size = 7000)
+  def en_to_zh(page, size = 9000)
     p "="*99, page.id, page.title
     en_content = page.en_content.first.content
 
