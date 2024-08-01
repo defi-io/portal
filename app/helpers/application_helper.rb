@@ -7,7 +7,7 @@ module ApplicationHelper
     return "DeFi Insights: Crypto News, Trends from Coindesk" if action_name == 'cd'
     return "DeFi Insights: Crypto News, Trends from Decrypt" if action_name == 'dc'
     return "DeFi Insights: Crypto News, Trends from Dlnews" if action_name == 'dl'
-    return "DeFi Insights" if action_name == 'insight'
+    return "DeFi Insights" if action_name == 'insights'
     return "DeFi Insights: Crypto News, Trends | DeFi.io" if action_name == 'index'
     current_page.title
   end

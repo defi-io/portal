@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   get 'cd', to: 'news#cd'
   get 'dc', to: 'news#dc'
   get 'dl', to: 'news#dl'
-  get 'insight', to: 'news#insight'
+  get 'insights', to: 'news#insights'
   get ':coin-to-usd', to: 'coins#to_usd'
   get ':from-to-:to', to: 'coins#to'
   get ':coin', to: 'coins#to_usd', constraints: { coin: /[a-zA-Z0-9]+/ }
