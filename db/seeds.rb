@@ -61,6 +61,7 @@ if is.nil?
 end
 
 ancestry = News::Ct.new.get_ancestry('Insight')
+
 mc = Spina::Page.find_by_name('Multicoin')
 if mc.nil?
   mc = Spina::Page.new
@@ -70,6 +71,17 @@ if mc.nil?
   mc.position = 2
   mc.ancestry = ancestry
   mc.save!
+end
+
+pd = Spina::Page.find_by_name('Paradigm')
+if pd.nil?
+  pd = Spina::Page.new
+  pd.title = "Paradigm"
+  pd.name = "Paradigm"
+  pd.view_template = "show"
+  pd.position = 2
+  pd.ancestry = ancestry
+  pd.save!
 end
 
 tb = Spina::Page.find_by_name('Theblock')

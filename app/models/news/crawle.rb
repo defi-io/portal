@@ -124,6 +124,8 @@ module News::Crawle
       url = 'https://www.dlnews.com'
     elsif name == 'MC'
       url = 'https://multicoin.capital'
+    elsif name == 'PD'
+      url = 'https://www.paradigm.xyz'
     end
   end
   
